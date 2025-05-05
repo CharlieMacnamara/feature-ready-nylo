@@ -1,36 +1,35 @@
-import '/resources/pages/not_found_page.dart';
+import '/resources/pages/dashboard_page.dart';
+import '/resources/pages/dashboard_page.dart';
 import '/resources/pages/home_page.dart';
+import '/resources/pages/login_page.dart';
+import '/resources/pages/register_page.dart';
+import '/resources/pages/forgot_password_page.dart';
+import '/resources/pages/not_found_page.dart';
+import '/routes/guards/auth_route_guard.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
-/* App Router
+/*
 |--------------------------------------------------------------------------
-| * [Tip] Create pages faster 🚀
-| Run the below in the terminal to create new a page.
-| "dart run nylo_framework:main make:page profile_page"
+| App Router
 |
-| * [Tip] Add authentication 🔑
-| Run the below in the terminal to add authentication to your project.
-| "dart run scaffold_ui:main auth"
+| Router helps your app handle page navigation and can be used to control
+| the flow of your application.
 |
-| * [Tip] Add In-app Purchases 💳
-| Run the below in the terminal to add In-app Purchases to your project.
-| "dart run scaffold_ui:main iap"
-|
-| Learn more https://nylo.dev/docs/6.x/router
-|-------------------------------------------------------------------------- */
+| Learn more: https://nylo.dev/docs/6.x/router
+|--------------------------------------------------------------------------
+*/
 
 appRouter() => nyRoutes((router) {
+      // Public routes
       router.add(HomePage.path).initialRoute();
+      router.add(LoginPagePage.path);
+      router.add(RegisterPagePage.path);
+      router.add(ForgotPasswordPagePage.path);
 
-      // Add your routes here ...
-      // router.add(NewPage.path, transitionType: TransitionType.fade());
+      // Protected routes with authentication guard
+      router.add(DashboardPage.path, routeGuards: [AuthRouteGuard()]);
 
-      // Example using grouped routes
-      // router.group(() => {
-      //   "route_guards": [AuthRouteGuard()],
-      //   "prefix": "/dashboard"
-      // }, (router) {
-      //
-      // });
+      // Unknown route handler
       router.add(NotFoundPage.path).unknownRoute();
+      router.add(DashboardPage.path);
 });

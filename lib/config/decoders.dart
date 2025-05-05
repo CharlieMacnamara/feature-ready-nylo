@@ -1,3 +1,13 @@
+import '/app/controllers/dashboard_page_controller.dart';
+import '/app/models/chore.dart';
+import '/app/networking/auth_api_service.dart';
+import '/app/networking/chore_api_service.dart';
+import '/app/networking/household_api_service.dart';
+import '/app/models/household.dart';
+import '/app/models/notification.dart';
+import '/app/controllers/forgot_password_page_controller.dart';
+import '/app/controllers/register_page_controller.dart';
+import '/app/controllers/login_page_controller.dart';
 import '/app/controllers/home_controller.dart';
 import '/app/models/user.dart';
 import '/app/networking/api_service.dart';
@@ -19,6 +29,18 @@ final Map<Type, dynamic> modelDecoders = {
   User: (data) => User.fromJson(data),
 
   // User: (data) => User.fromJson(data),
+
+  List<Notification>: (data) => List.from(data).map((json) => Notification.fromJson(json)).toList(),
+
+  Notification: (data) => Notification.fromJson(data),
+
+  List<Household>: (data) => List.from(data).map((json) => Household.fromJson(json)).toList(),
+
+  Household: (data) => Household.fromJson(data),
+
+  List<Chore>: (data) => List.from(data).map((json) => Chore.fromJson(json)).toList(),
+
+  Chore: (data) => Chore.fromJson(data),
 };
 
 /* API Decoders
@@ -33,6 +55,12 @@ final Map<Type, dynamic> apiDecoders = {
   ApiService: () => ApiService(),
 
   // ...
+
+  HouseholdApiService: HouseholdApiService(),
+
+  ChoreApiService: ChoreApiService(),
+
+  AuthApiService: AuthApiService(),
 };
 
 /* Controller Decoders
@@ -45,4 +73,13 @@ final Map<Type, dynamic> controllers = {
   HomeController: () => HomeController(),
 
   // ...
+
+  LoginPageController: () => LoginPageController(),
+
+  RegisterPageController: () => RegisterPageController(),
+
+  ForgotPasswordPageController: () => ForgotPasswordPageController(),
+
+  DashboardPageController: () => DashboardPageController(),
 };
+

@@ -1,7 +1,7 @@
 import 'package:url_launcher/url_launcher.dart';
-import 'controller.dart';
+import 'package:nylo_framework/nylo_framework.dart';
 
-class HomeController extends Controller {
+class HomeController extends NyController {
   onTapDocumentation() async {
     await launchUrl(Uri.parse("https://nylo.dev/docs"));
   }

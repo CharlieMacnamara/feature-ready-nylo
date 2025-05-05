@@ -27,6 +27,6 @@ class _CurrentTimeCommand extends NyCustomCommand {
 
     // Format the current time
     final formattedTime = dateFormat.format(now);
-    info("The current time is " + formattedTime);
+    info("The current time is $formattedTime");
   }
 }
